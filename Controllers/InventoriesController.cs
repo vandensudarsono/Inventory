@@ -32,7 +32,7 @@ namespace Inventory.Controllers
                 return NotFound();
             }
 
-            var result = await _assetService.GetAssetsAsync(id);
+            var result = await _assetService.GetOneAsync(id);
             if (result == null) {
                 return NotFound();
             }
@@ -51,7 +51,7 @@ namespace Inventory.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _assetService.CreateAssetAsync(assets);
+                await _assetService.CreateOneAsync(assets);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -66,7 +66,7 @@ namespace Inventory.Controllers
                 return NotFound();
             }
 
-            var result = await _assetService.GetAssetsAsync(id);
+            var result = await _assetService.GetOneAsync(id);
             if (result == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace Inventory.Controllers
             {
                 try
                 {
-                    await _assetService.UpdateAssetsAsync(id, assets);
+                    await _assetService.UpdateOneAsync(id, assets);
                 }
                 catch (MongoWriteException ex)
                 {
@@ -110,7 +110,7 @@ namespace Inventory.Controllers
                 return NotFound();
             }
 
-            var result = await _assetService.GetAssetsAsync(id);
+            var result = await _assetService.GetOneAsync(id);
             if (result == null )
             {
                 return NotFound();
@@ -128,10 +128,10 @@ namespace Inventory.Controllers
                 return Problem("Entity set 'AssetService' is null.");
             }
 
-            var result = await _assetService.GetAssetsAsync(id);
+            var result = await _assetService.GetOneAsync(id);
             if (result != null) 
             {
-               await _assetService.RemoveAsync(id);
+               await _assetService.RemoveOneAsync(id);
             }
 
             return RedirectToAction(nameof(Index));

@@ -47,7 +47,10 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Picture)
+                @if (item.Picture != "") {
+                    <img src=@item.Picture alt="item-picture" width="200px">
+                }
+                @* @Html.DisplayFor(modelItem => item.Picture) *@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
